@@ -35,7 +35,39 @@ public class King extends AbstractFigure{
         }
     };
 
-    public void setCantMove(){};
+    if (Desk.desk[i][j].charAt(2) == ']') {
+        AbstractFigure figure;
+        FigureSim k = Helper.bToF(Desk.desk[i][j]);
+        switch (k){
+            case King:
+                figure = new King(Color.WhiteF, new int[]{i,j});
+                break;
+            case Queen:
+                figure = new Queen(Color.WhiteF, new int[]{i,j});
+                break;
+            case Bishop:
+                figure = new Bishop(Color.WhiteF, new int[]{i,j});
+                break;
+            case Pawn:
+                figure = new Pawn(Color.WhiteF, new int[]{i,j});
+                break;
+            case Rook:
+                figure = new Rook(Color.WhiteF, new int[]{i,j});
+                break;
+            default:
+                figure = new Knight(Color.WhiteF, new int[]{i,j});
+                break;
+
+        }
+        int [][]tabl = figure.getCanMove();
+        for (int z = 0; z < 8; z++) {
+            for (int t = 0; t < 8; t++) {
+                if (tabl[z][t] == 1) {
+                    cmb[z][t] = 1;
+                }
+            }
+        }
+    }
 
     public int[][] getCantMove() {
         return cantMove;
